@@ -3,96 +3,458 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>@work · Seu próximo negócio pode estar ao seu lado</title>
-<meta name="description" content="Fique visível onde estiver e descubra quem está na mesa ao lado ou perto de você: o que cada um faz, oferece e procura.">
-<meta name="theme-color" content="#08090B">
+<title>@work · A pessoa certa pode estar ao seu lado</title>
+<meta name="description" content="Descubra quem está no mesmo lugar que você: o que faz, oferece e procura. Pessoas, negócios e oportunidades a até 100 metros, com conversa só depois do aceite.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="@work · A pessoa certa pode estar ao seu lado">
+<meta property="og:description" content="Descubra quem está no mesmo lugar que você. Pessoas, negócios e oportunidades a até 100 metros.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2308090B'/%3E%3Cpath d='M82 50A32 32 0 1 0 72.6 72.6' fill='none' stroke='%23F3F4F6' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%237DF0C8'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#08090B;--line:#262A31;--fg:#E6E8EB;--white:#F3F4F6;--muted:#8A909B;--brand:#7DF0C8}
+:root{
+  color-scheme:dark;
+  --bg:#08090B;--raise:#101216;--field:#15171C;--line:#262A31;
+  --fg:#E6E8EB;--white:#F3F4F6;--muted:#8A909B;--dim:#3a3f47;
+  --brand:#7DF0C8;--seek:#FFB35C;--opp:#9A8CFF;--like:#F91880;
+  --display:Unbounded,system-ui,sans-serif;
+}
 *{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.6 Manrope,-apple-system,system-ui,'Segoe UI',sans-serif;display:flex;flex-direction:column;min-height:100%}
-.wrap{width:100%;max-width:960px;margin:0 auto;padding:0 24px}
-header{padding:32px 0}
-.logo{text-decoration:none;display:inline-flex;align-items:center;gap:10px;font:400 26px/1 Unbounded,sans-serif;color:var(--white)}
-.logo svg{width:32px;height:32px}
-main{flex:1}
-section{padding:64px 0;border-top:1px solid var(--line);scroll-margin-top:16px}
-section.hero{border-top:0;padding:64px 0 88px}
-h2{margin:0 0 24px;font:500 clamp(24px,3.6vw,34px)/1.2 Unbounded,sans-serif;letter-spacing:-.02em;color:var(--white)}
-.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
-.grid strong{display:block;font-weight:700;color:var(--white)}
-.grid p{margin:6px 0 0;color:var(--muted)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0 0}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;max-width:100%;padding:12px 26px;border-radius:99px;background:var(--white);color:#08090B;font-weight:700;text-decoration:none;overflow-wrap:anywhere}
-.btn.out{background:transparent;color:var(--white);border:1px solid var(--line)}
-.btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
-.small{margin:0;font-size:17px}
-.wide{max-width:38em;font-size:clamp(17px,2.2vw,20px)}
-h1{margin:0;max-width:17ch;font:500 clamp(34px,6.4vw,64px)/1.08 Unbounded,sans-serif;letter-spacing:-.025em;color:var(--white)}
-h1 span{color:var(--muted)}
-.lead{margin:28px 0 0;max-width:34em;font-size:clamp(17px,2.2vw,20px);color:var(--muted)}
-.soon{display:inline-flex;align-items:center;gap:10px;margin:24px 0 0;font-weight:600;color:var(--fg)}
-.dot{width:9px;height:9px;border-radius:50%;background:var(--brand)}
-footer{border-top:1px solid var(--line);padding:24px 0;font-size:14px;color:var(--muted)}
-.foot{display:flex;flex-wrap:wrap;gap:8px 24px}.foot a{color:var(--muted)}
+html{background:#000}
+body{margin:0;background:#000;color:var(--fg);font:400 17px/1.55 Manrope,-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* Navegação */
+nav{position:fixed;inset:0 0 auto;z-index:30;height:56px;display:flex;align-items:center;transition:background .4s}
+nav.solid{background:rgba(0,0,0,.7);backdrop-filter:saturate(1.6) blur(18px);-webkit-backdrop-filter:saturate(1.6) blur(18px)}
+nav .wrap{width:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{display:inline-flex;align-items:center;gap:8px;font:400 19px/1 var(--display);color:var(--white)}
+.logo svg{width:24px;height:24px}
+.get{padding:7px 16px;border-radius:99px;background:var(--white);color:#000;font-weight:700;font-size:14px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border-radius:99px;background:var(--white);color:#000;font-weight:700;font-size:17px;transition:transform .2s}
+.btn:hover{transform:scale(1.03)}
+.btn svg{width:19px;height:19px}
+.btn:focus-visible,.get:focus-visible,.logo:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+
+/* ---------- Cena 1: do logo ao alcance ---------- */
+.scene{position:relative;height:480vh}
+.pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.2px);background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(circle at 50% 42%,#000 0,transparent 62%);mask-image:radial-gradient(circle at 50% 42%,#000 0,transparent 62%)}
+#c{position:absolute;inset:0;width:100%;height:100%}
+.ov{position:absolute;left:0;right:0;text-align:center;padding:0 24px;pointer-events:none;will-change:opacity,transform}
+.t-hero{bottom:12vh}
+.t-hero h1{margin:0 auto;max-width:12em;font:500 clamp(34px,5.6vw,80px)/1.02 var(--display);letter-spacing:-.04em;color:var(--white)}
+.t-hero p{margin:18px auto 0;max-width:24em;color:var(--muted);font-size:clamp(17px,1.6vw,21px)}
+.hint{position:absolute;left:50%;bottom:28px;width:22px;height:36px;margin-left:-11px;border:1.5px solid var(--dim);border-radius:12px}
+.hint::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--muted);animation:hint 1.8s infinite}
+@keyframes hint{60%{transform:translateY(9px);opacity:0}100%{opacity:0}}
+.t-range{top:50%;transform:translateY(-50%)}
+.t-range .big{margin:0;font:500 clamp(72px,15vw,220px)/.9 var(--display);letter-spacing:-.06em;color:var(--white)}
+.t-range .big small{font-size:.4em;letter-spacing:-.03em;color:var(--brand)}
+.t-range p{margin:22px auto 0;max-width:22em;color:var(--muted);font-size:clamp(17px,1.6vw,22px)}
+.t-word{bottom:10vh}
+.word{position:relative;height:clamp(48px,7vw,96px)}
+.word span{position:absolute;left:0;right:0;font:500 clamp(32px,6vw,84px)/1 var(--display);letter-spacing:-.04em;opacity:0;transform:translateY(20px);transition:opacity .45s,transform .45s}
+.word span.on{opacity:1;transform:none}
+.word .w0{color:var(--brand)}.word .w1{color:var(--opp)}.word .w2{color:var(--white)}.word .w3{color:var(--seek)}.word .w4{color:#F98BAA}
+.caps{position:relative;height:3.2em;margin-top:16px}
+.caps span{position:absolute;left:0;right:0;color:var(--muted);font-size:clamp(17px,1.6vw,22px);opacity:0;transition:opacity .45s}
+.caps span.on{opacity:1}
+
+/* ---------- Cena 2: o app ---------- */
+.app{position:relative;height:500vh}
+.app .pin{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:56px;padding:0 max(24px,calc((100vw - 1120px)/2))}
+.steps{position:relative;height:280px}
+.st{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s}
+.st.on{opacity:1;transform:none;transition-delay:.3s}
+.st b{display:block;font:500 clamp(28px,3vw,44px)/1.08 var(--display);letter-spacing:-.04em;color:var(--white)}
+.st p{margin:16px 0 0;max-width:15em;color:var(--muted);font-size:clamp(17px,1.4vw,20px)}
+.idx{display:flex;flex-direction:column;gap:14px;justify-self:end}
+.idx i{display:block;width:44px;height:2px;border-radius:2px;background:var(--dim);overflow:hidden;position:relative}
+.idx i::after{content:"";position:absolute;inset:0;background:var(--brand);transform:scaleX(var(--p,0));transform-origin:left}
+
+.phone{position:relative;width:min(320px,74vw);aspect-ratio:9/19.3;border-radius:52px;padding:11px;background:#1a1c20;box-shadow:inset 0 0 0 1.5px #3a3e45,0 0 0 1px #000,0 50px 140px -40px rgba(125,240,200,.28);transform:perspective(1400px) rotateX(var(--rx,0deg)) scale(var(--sc,1))}
+.screen{position:relative;height:100%;border-radius:42px;background:#000;overflow:hidden;font-size:12px}
+.island{position:absolute;top:10px;left:50%;width:96px;height:28px;margin-left:-48px;border-radius:20px;background:#000;z-index:5;box-shadow:0 0 0 1px #111}
+.sv{position:absolute;inset:0;padding-top:46px;opacity:0;transition:opacity .45s}
+.sv.on{opacity:1;transition-delay:.25s}
+.abar{display:flex;align-items:center;justify-content:space-between;padding:6px 14px 8px}
+.abar .me{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#7DF0C8,#9A8CFF)}
+.abar .lg{display:flex;align-items:center;gap:5px;font:400 15px/1 var(--display);color:var(--white)}
+.abar .lg svg{width:17px;height:17px}
+.abar .pl{width:26px;height:26px;border-radius:50%;border:1px solid var(--line)}
+.status{display:flex;align-items:center;gap:8px;padding:6px 14px 10px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px var(--brand)}
+.status b{display:block;color:var(--white);font-size:12px}
+.status small{color:var(--muted);font-size:10.5px}
+.tabs{display:flex;border-bottom:1px solid var(--line)}
+.tabs span{flex:1;text-align:center;padding:8px 0 9px;color:var(--muted);font-weight:700;font-size:12px;position:relative}
+.tabs span.a{color:var(--white)}
+.tabs span.a::after{content:"";position:absolute;left:50%;bottom:-1px;width:40px;height:3px;margin-left:-20px;border-radius:3px;background:var(--brand)}
+.post{display:flex;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.av{flex:0 0 auto;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:11px}
+.post .h{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post .h b{color:var(--white)}.post .h span{color:var(--muted)}
+.ty{display:flex;align-items:center;gap:5px;font-weight:700;font-size:10.5px;margin:2px 0 4px}
+.ty::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.post p{margin:0;color:var(--fg);font-size:11.5px;line-height:1.45}
+.acts{display:flex;gap:16px;margin-top:8px;color:var(--muted);font-size:10.5px}
+.acts .lk{color:var(--like)}
+.fab{position:absolute;right:14px;bottom:62px;width:44px;height:44px;border-radius:50%;background:var(--brand);display:grid;place-items:center;color:#000;font-size:24px;box-shadow:0 8px 30px rgba(125,240,200,.4)}
+.tbar{position:absolute;left:0;right:0;bottom:0;height:52px;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;background:#000}
+.tbar i{width:18px;height:18px;border:1.6px solid var(--muted);border-radius:5px}
+.tbar i:first-child{border-color:var(--white)}
+.cover{height:96px;background:linear-gradient(120deg,#7DF0C8 0%,#9A8CFF 100%)}
+.pf{padding:0 16px}
+.pf .av{width:66px;height:66px;margin-top:-33px;font-size:20px;border:3px solid #000;background:linear-gradient(135deg,#FFB35C,#F91880)}
+.pf h4{margin:10px 0 0;font:500 16px/1.2 var(--display);color:var(--white)}
+.pf .r{color:var(--muted);font-size:11.5px}
+.pf .vis{display:inline-flex;align-items:center;gap:6px;margin:10px 0;padding:5px 10px;border-radius:99px;border:1px solid rgba(125,240,200,.4);color:var(--brand);font-weight:700;font-size:10.5px}
+.pf .vis::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.kv{padding:10px 12px;border-radius:12px;background:var(--field);margin-top:8px}
+.kv span{display:block;font-weight:700;font-size:10px;margin-bottom:3px}
+.kv p{margin:0;font-size:11.5px;color:var(--fg)}
+.ph{display:flex;justify-content:space-between;align-items:baseline;padding:12px 14px 8px}
+.ph b{font:500 13px/1 var(--display);color:var(--white)}
+.ph small{color:var(--muted);font-size:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px}
+.pc{border-radius:14px;background:var(--raise);overflow:hidden;text-align:center;padding-bottom:10px;border:1px solid var(--line)}
+.pc .cv{height:34px}
+.pc .av{width:40px;height:40px;margin:-20px auto 0;border:2px solid var(--raise);font-size:12px}
+.pc b{display:block;margin-top:6px;color:var(--white);font-size:11.5px}
+.pc small{display:block;color:var(--muted);font-size:9.5px;padding:0 6px}
+.pc em{display:block;font-style:normal;color:var(--brand);font-weight:600;font-size:10px;margin:5px 6px 7px;line-height:1.3}
+.pc .cn{display:inline-block;padding:4px 12px;border-radius:99px;border:1px solid var(--brand);color:var(--brand);font-weight:700;font-size:10px}
+.chat{padding:8px 14px}
+.chat .who{display:flex;align-items:center;gap:10px;padding:4px 0 12px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.chat .who b{display:block;color:var(--white);font-size:12.5px}
+.chat .who small{color:var(--muted);font-size:10.5px}
+.ok{display:flex;align-items:center;gap:8px;justify-content:center;margin:6px 0 10px;color:var(--brand);font-weight:700;font-size:10.5px}
+.ok::before,.ok::after{content:"";flex:1;height:1px;background:rgba(125,240,200,.25)}
+.bb{max-width:80%;padding:9px 12px;border-radius:16px;font-size:11.5px;line-height:1.45;margin-bottom:8px}
+.bb.i{background:var(--field);border-bottom-left-radius:5px}
+.bb.o{margin-left:auto;background:var(--white);color:#000;border-bottom-right-radius:5px}
+.soc{position:absolute;left:14px;right:14px;bottom:118px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.soc span{display:flex;align-items:center;justify-content:center;height:38px;border-radius:99px;border:1px solid var(--line);background:var(--raise);color:var(--white);font-weight:700;font-size:11.5px}
+.wa{position:absolute;left:14px;right:14px;bottom:66px;display:flex;align-items:center;justify-content:center;height:42px;border-radius:99px;background:var(--brand);color:#000;font-weight:800;font-size:12.5px}
+
+/* ---------- Manifesto ---------- */
+.manifest{padding:28vh 0}
+.manifest p{margin:0 auto;max-width:17em;font:500 clamp(28px,4.4vw,60px)/1.14 var(--display);letter-spacing:-.035em;text-align:center}
+.manifest p span{color:var(--white);opacity:.14;transition:opacity .25s}
+.manifest p span.lit{opacity:1}
+.manifest p span.m{color:var(--brand)}
+
+/* ---------- Números ---------- */
+.specs{padding:0 0 22vh}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.sp{background:#000;padding:44px 28px 36px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between}
+.sp b{white-space:nowrap;font:400 clamp(34px,4.2vw,60px)/1 var(--display);letter-spacing:-.05em;color:var(--white)}
+.sp b.m{color:var(--brand)}
+.sp p{margin:28px 0 0;color:var(--muted);font-size:15px;max-width:13em}
+.sp p strong{display:block;color:var(--white);font-weight:700;font-size:17px;margin-bottom:2px}
+
+/* ---------- Final ---------- */
+.end{position:relative;min-height:100vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:120px 0}
+.end .mark{width:120px;height:120px;margin:0 auto 44px;display:block}
+.end .mark path{stroke-dasharray:240;stroke-dashoffset:240;transition:stroke-dashoffset 1.6s cubic-bezier(.6,0,.2,1)}
+.end.in .mark path{stroke-dashoffset:0}
+.end .mark circle{transform-origin:50px 50px;transform:scale(0);transition:transform .6s 1.1s cubic-bezier(.3,1.6,.5,1)}
+.end.in .mark circle{transform:scale(1)}
+.end h2{margin:0;font:500 clamp(40px,7vw,96px)/1 var(--display);letter-spacing:-.045em;color:var(--white)}
+.end h2 span{color:var(--muted)}
+.end .cta{display:flex;flex-direction:column;align-items:center;gap:20px;margin-top:44px}
+.end small{color:var(--muted);font-size:14px}
+.halo{position:absolute;left:50%;top:42%;width:min(900px,140vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(125,240,200,.12),transparent 60%);pointer-events:none}
+
+footer{border-top:1px solid #16181c;padding:22px 0 30px;font-size:13px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:8px 24px}
+.foot .sp2{flex:1}
+.foot a:hover{color:var(--white)}
+
+@media (max-width:900px){
+  .app{height:520vh}
+  .app .pin{grid-template-columns:1fr;grid-template-rows:auto 1fr;justify-items:center;align-items:start;gap:8px;padding:72px 20px 20px}
+  .steps{width:100%;height:150px;text-align:center}
+  .st p{margin:10px auto 0}
+  .idx{display:none}
+  .phone{width:auto;height:min(64vh,560px);border-radius:44px}
+  .screen{border-radius:34px}
+  .bento{grid-template-columns:1fr 1fr}
+  .sp{min-height:190px;padding:30px 20px 26px}
+}
+@media (max-width:420px){.phone{height:62vh}}
+@media (max-width:620px){.word{height:36px}.word span{font-size:29px}.t-word{bottom:7vh}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <a class="logo" href="/" aria-label="@work">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M88 50A38 38 0 1 0 76.87 76.87" fill="none" stroke="#F3F4F6" stroke-width="9" stroke-linecap="round"/><circle cx="50" cy="50" r="11" fill="#7DF0C8"/></svg>
-    work
+
+<nav id="nav"><div class="wrap">
+  <a class="logo" href="/" aria-label="@work, início">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M88 50A38 38 0 1 0 76.87 76.87" fill="none" stroke="#F3F4F6" stroke-width="9" stroke-linecap="round"/><circle cx="50" cy="50" r="11" fill="#7DF0C8"/></svg>work
   </a>
-</div></header>
+  <a class="get" href="https://apps.apple.com/br/app/id6829522088">Baixar</a>
+</div></nav>
+
 <main>
-<section class="hero"><div class="wrap">
-  <h1>Seu próximo negócio <span>pode estar ao seu lado.</span></h1>
-  <p class="lead">Fique visível onde estiver e descubra quem está na mesa ao lado ou perto de você: o que cada um faz, oferece e procura.</p>
-  <div class="cta">
-    <a class="btn" href="#baixar">Baixar o app</a>
-    <a class="btn out" href="#como">Como funciona</a>
+<section class="scene" id="scene" aria-label="O que é o @work">
+  <div class="pin">
+    <div class="dots" aria-hidden="true"></div>
+    <canvas id="c" aria-hidden="true"></canvas>
+    <div class="ov t-hero" id="o1">
+      <h1>A pessoa certa pode estar ao seu lado.</h1>
+      <p>E você nunca ficaria sabendo. Até agora.</p>
+    </div>
+    <div class="ov t-range" id="o2" style="opacity:0">
+      <p class="big">100<small> m</small></p>
+      <p>Tudo o que está ao seu alcance. Quem faz o quê, quem oferece, quem procura.</p>
+    </div>
+    <div class="ov t-word" id="o3" style="opacity:0">
+      <div class="word" id="word"><span class="w0">Um cliente.</span><span class="w1">Uma parceria.</span><span class="w2">Um sócio.</span><span class="w3">Uma oportunidade.</span><span class="w4">Uma nova amizade.</span></div>
+      <div class="caps" id="caps"><span>Na mesa ao lado. No mesmo evento.</span><span>Negócios, cultura, arte, eventos.</span><span>Mentores, talentos, quem faz o que você admira.</span><span>Com o aceite, exiba suas redes sociais e seu contato para negócios.</span><span>Tem encontros que vão muito além do trabalho.</span></div>
+    </div>
+    <span class="hint" id="hint" aria-hidden="true"></span>
+  </div>
+</section>
+
+<section class="manifest" aria-label="Imagine"><div class="wrap">
+  <p id="mani">Seu próximo cliente, sócio ou parceiro pode estar a poucos metros de você agora. O @work faz essa conversa <span class="m">acontecer.</span></p>
+</div></section>
+
+<section class="app" id="app" aria-label="Como funciona">
+  <div class="pin">
+    <div class="steps">
+      <div class="st on"><b>Mostre quem você é.</b><p>O que você faz, oferece e procura, em um perfil.</p></div>
+      <div class="st"><b>Apareça quando quiser.</b><p>Ligue a visibilidade e veja o feed de quem está no mesmo lugar.</p></div>
+      <div class="st"><b>Descubra.</b><p>Pessoas, negócios e oportunidades a até 100 m de você.</p></div>
+      <div class="st"><b>Conecte com segurança.</b><p>Com o aceite, abrem a conversa, o WhatsApp e as redes que você escolher.</p></div>
+    </div>
+
+    <div class="phone" id="phone" aria-hidden="true"><div class="screen">
+      <div class="island"></div>
+
+      <div class="sv on">
+        <div class="cover"></div>
+        <div class="pf">
+          <div class="av">MC</div>
+          <h4>Marina Costa</h4>
+          <div class="r">Diretora de arte · Estúdio Lume</div>
+          <div class="vis">Visível agora</div>
+          <div class="kv"><span style="color:var(--brand)">Ofereço</span><p>Branding, cenografia e direção de arte para eventos.</p></div>
+          <div class="kv"><span style="color:var(--seek)">Procuro</span><p>Produtoras culturais e marcas para parcerias.</p></div>
+        </div>
+        <div class="tbar"><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="sv">
+        <div class="abar"><span class="me"></span><span class="lg"><svg viewBox="0 0 100 100"><path d="M88 50A38 38 0 1 0 76.87 76.87" fill="none" stroke="#F3F4F6" stroke-width="10" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#7DF0C8"/></svg>work</span><span class="pl"></span></div>
+        <div class="status"><i></i><div><b>Você está visível</b><small>Café Central · 2 h restantes</small></div></div>
+        <div class="tabs"><span class="a">Feed</span><span>Pessoas</span></div>
+        <div class="post"><div class="av" style="background:linear-gradient(135deg,#9A8CFF,#F91880)">CR</div><div><div class="h"><b>Camila Rezende</b> <span>Gerente de marca</span></div><div class="ty" style="color:var(--opp)">Oportunidade</div><p>Buscamos parceiros para uma ativação de verão. Me chama.</p><div class="acts"><span>Responder</span><span>♡ 21</span><span>Conectar</span></div></div></div>
+        <div class="post"><div class="av" style="background:linear-gradient(135deg,#FFB35C,#F91880)">ML</div><div><div class="h"><b>Marina Lopes</b> <span>Diretora comercial</span></div><div class="ty" style="color:var(--seek)">Procuro</div><p>Fornecedor de eventos para um lançamento em dezembro.</p><div class="acts"><span>Responder</span><span class="lk">♥ 12</span><span>Conectar</span></div></div></div>
+        <div class="post"><div class="av" style="background:linear-gradient(135deg,#7DF0C8,#3aa58a)">RT</div><div><div class="h"><b>Rafael Teixeira</b> <span>Fundador</span></div><div class="ty" style="color:var(--brand)">Ofereço</div><p>Mentoria em produto digital para quem está começando.</p><div class="acts"><span>Responder</span><span>♡ 8</span><span>Conectar</span></div></div></div>
+        <div class="fab">+</div>
+        <div class="tbar"><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="sv">
+        <div class="abar"><span class="me"></span><span class="lg"><svg viewBox="0 0 100 100"><path d="M88 50A38 38 0 1 0 76.87 76.87" fill="none" stroke="#F3F4F6" stroke-width="10" stroke-linecap="round"/><circle cx="50" cy="50" r="12" fill="#7DF0C8"/></svg>work</span><span class="pl"></span></div>
+        <div class="tabs"><span>Feed</span><span class="a">Pessoas</span></div>
+        <div class="ph"><b>Pessoas aqui</b><small>6 visíveis</small></div>
+        <div class="grid2">
+          <div class="pc"><div class="cv" style="background:linear-gradient(90deg,#FFB35C,#F98BAA)"></div><div class="av" style="background:linear-gradient(135deg,#7DF0C8,#9A8CFF)">JS</div><b>Juliana Souza</b><small>Arquiteta</small><em>Interiores comerciais</em><span class="cn">+ Conectar</span></div>
+          <div class="pc"><div class="cv" style="background:linear-gradient(90deg,#F98BAA,#FFB35C)"></div><div class="av" style="background:linear-gradient(135deg,#FFB35C,#F91880)">ML</div><b>Marina Lopes</b><small>Construtora</small><em>Parcerias em lançamentos</em><span class="cn">+ Conectar</span></div>
+          <div class="pc"><div class="cv" style="background:linear-gradient(90deg,#9A8CFF,#F98BAA)"></div><div class="av" style="background:linear-gradient(135deg,#9A8CFF,#5b4fd6)">LF</div><b>Lucas Faria</b><small>Produtor musical</small><em>Shows e festivais</em><span class="cn">+ Conectar</span></div>
+          <div class="pc"><div class="cv" style="background:linear-gradient(90deg,#7DF0C8,#9A8CFF)"></div><div class="av" style="background:linear-gradient(135deg,#7DF0C8,#3aa58a)">RT</div><b>Rafael Teixeira</b><small>Fundador</small><em>Mentoria de produto</em><span class="cn">+ Conectar</span></div>
+        </div>
+        <div class="tbar"><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="sv">
+        <div class="chat">
+          <div class="who"><div class="av" style="background:linear-gradient(135deg,#9A8CFF,#5b4fd6)">LF</div><div><b>Lucas Faria</b><small>Produtor musical</small></div></div>
+          <div class="bb o">Faço cenografia para eventos. Posso te mostrar meu trabalho?</div>
+          <div class="ok">Pedido aceito</div>
+          <div class="bb i">Claro! Estou montando um festival em março.</div>
+        </div>
+        <div class="soc"><span>in&nbsp; LinkedIn</span><span>◎&nbsp; Instagram</span></div>
+        <div class="wa">Abrir WhatsApp</div>
+        <div class="tbar"><i></i><i></i><i></i></div>
+      </div>
+    </div></div>
+
+    <div class="idx" id="idx" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+
+<section class="specs" aria-label="Em números"><div class="wrap">
+  <div class="bento">
+    <div class="sp"><b class="m">100&nbsp;m</b><p><strong>Alcance</strong>Você vê e é visto por quem também está visível por perto.</p></div>
+    <div class="sp"><b>On/Off</b><p><strong>Você decide</strong>Aparece só quando liga a visibilidade. Some com um toque.</p></div>
+    <div class="sp"><b>1</b><p><strong>Aceite</strong>Conversa e WhatsApp só abrem quando os dois querem.</p></div>
+    <div class="sp"><b>0</b><p><strong>Ponto no mapa</strong>Sua posição exata não aparece para ninguém. Bloqueie ou denuncie quando quiser.</p></div>
   </div>
 </div></section>
 
-<section id="perto"><div class="wrap">
-  <h2>Você já esteve a poucos passos da pessoa certa.</h2>
-  <p class="lead small wide">O cliente que você procura, o sócio que faltava, a indicação que abre a próxima porta. Às vezes, estão no mesmo café que você, e nenhum dos dois fica sabendo. No @work, essa conversa pode começar.</p>
-</div></section>
-
-<section id="como"><div class="wrap">
-  <h2>Como funciona</h2>
-  <ol class="grid">
-    <li><strong>Crie seu perfil</strong><p>Diga o que você faz, o que oferece e o que procura.</p></li>
-    <li><strong>Fique visível</strong><p>Em qualquer lugar. Você vê o feed e as pessoas visíveis a até 100 metros.</p></li>
-    <li><strong>Conecte com um motivo</strong><p>Todo pedido explica o porquê. A conversa e o WhatsApp só abrem depois do aceite.</p></li>
-  </ol>
-</div></section>
-
-<section id="privacidade"><div class="wrap">
-  <h2>Sua localização é sua</h2>
-  <ul class="grid">
-    <li><strong>Só quando você quer</strong><p>Você escolhe quando ficar visível. O app usa a localização só quando está aberto.</p></li>
-    <li><strong>Sem ponto no mapa</strong><p>Ninguém vê onde você está nem a sua distância, só que você está por perto.</p></li>
-    <li><strong>Você no controle</strong><p>Bloqueie, denuncie ou exclua sua conta quando quiser, direto no app.</p></li>
-  </ul>
-</div></section>
-
-<section id="baixar"><div class="wrap">
-  <h2>Baixar o app</h2>
-  <p class="lead small">Disponível para iPhone na App Store. Android em breve.</p>
-  <div class="cta"><a class="btn" href="https://apps.apple.com/br/app/id6829522088">Baixar na App Store</a></div>
-</div></section>
-
-<section id="contato"><div class="wrap">
-  <h2>Fale com a gente</h2>
-  <p class="lead small">Dúvidas, suporte, privacidade ou parcerias.</p>
-  <div class="cta"><a class="btn out" href="mailto:contato@useatwork.app">contato@useatwork.app</a></div>
-</div></section>
+<section class="end" id="end" aria-label="Baixar">
+  <div class="halo"></div>
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M88 50A38 38 0 1 0 76.87 76.87" fill="none" stroke="#F3F4F6" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="50" r="11" fill="#7DF0C8"/></svg>
+    <h2>Quem você vai <span>conhecer hoje?</span></h2>
+    <div class="cta">
+      <a class="btn" href="https://apps.apple.com/br/app/id6829522088">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.62-1.7-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.63 1.11 8.8.73 1.06 1.6 2.25 2.75 2.2 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.88.69 1.19-.02 1.94-1.08 2.67-2.14.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.31-.89-2.33-3.55zM14.17 6.13c.61-.74 1.02-1.76.91-2.78-.88.04-1.94.59-2.57 1.32-.56.65-1.06 1.690-.93 2.69.98.08 1.98-.5 2.59-1.23z"/></svg>
+        Baixar na App Store
+      </a>
+      <small>iPhone · Android em breve</small>
+    </div>
+  </div>
+</section>
 </main>
-<footer><div class="wrap foot"><span>© 2026 @work</span><a href="/termos">Termos de uso</a><a href="/privacidade">Política de privacidade</a></div></footer>
+
+<footer><div class="wrap foot">
+  <span>© 2026 @work</span><span class="sp2"></span>
+  <a href="/termos">Termos</a><a href="/privacidade">Privacidade</a><a href="mailto:contato@useatwork.app">contato@useatwork.app</a>
+</div></footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+  const seg=(p,a,b)=>clamp((p-a)/(b-a));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  const prog=el=>{const r=el.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));};
+  const nav=document.getElementById('nav');
+
+  /* ---------- Cena 1: o logo vira o alcance de 100 m ---------- */
+  const scene=document.getElementById('scene'), cv=document.getElementById('c'), ctx=cv.getContext('2d');
+  const o1=document.getElementById('o1'),o2=document.getElementById('o2'),o3=document.getElementById('o3'),hint=document.getElementById('hint');
+  const words=[...document.querySelectorAll('#word span')], caps=[...document.querySelectorAll('#caps span')];
+  const COLORS=['#7DF0C8','#9A8CFF','#F3F4F6','#FFB35C','#F98BAA'];const N=COLORS.length;
+  let W,H,DPR;
+  function size(){DPR=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+  const seed=[[.34,.4],[.62,1.3],[.8,2.1],[.48,2.9],[.9,3.6],[.7,4.3],[.4,5.0],[.85,5.6],[.58,.95],[.92,2.6],[.3,3.9],[.75,6.0],[.5,1.8],[.66,4.9],[.88,.2],[.45,3.3]];
+  const people=seed.map(([d,a],i)=>({d,a,c:i%N}));
+  const t0=performance.now();
+
+  function draw(now){
+    const p=prog(scene), t=(now-t0)/1000;
+    ctx.clearRect(0,0,W,H);
+    const mob=W<700;
+    const cx=W/2, cy=H*(mob?.38:.42);
+    const base=Math.min(W,H)*(mob?.15:.11);
+    const big=Math.min(W*(mob?.44:.5),H*(mob?.32:.35));
+
+    const k=ease(seg(p,.1,.34));
+    const r=lerp(base,big,k);
+    const gap=(Math.PI/4)*(1-k);
+    if(k>0){const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r);g.addColorStop(0,`rgba(125,240,200,${.10*k})`);g.addColorStop(1,'rgba(125,240,200,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.fill();}
+    ctx.lineCap='round';
+    ctx.strokeStyle=`rgba(${Math.round(lerp(243,125,k))},${Math.round(lerp(244,240,k))},${Math.round(lerp(246,200,k))},${lerp(1,.55,k)})`;
+    ctx.lineWidth=lerp(base*.2,1.5,k);
+    // arco do logo: aberto em baixo à direita; a abertura fecha enquanto vira o alcance
+    ctx.beginPath();ctx.arc(cx,cy,r,gap,Math.PI*2,false);ctx.stroke();
+
+    if(k>.5){
+      const a=(k-.5)*2;ctx.lineWidth=1;
+      [.33,.66].forEach(f=>{ctx.strokeStyle=`rgba(125,240,200,${.12*a})`;ctx.setLineDash([2,6]);ctx.beginPath();ctx.arc(cx,cy,r*f,0,7);ctx.stroke();});
+      ctx.setLineDash([]);
+      for(let i=0;i<2;i++){const q=((t*.35+i*.5)%1);ctx.strokeStyle=`rgba(125,240,200,${.4*(1-q)*a})`;ctx.beginPath();ctx.arc(cx,cy,r*q,0,7);ctx.stroke();}
+      // marcas de régua em volta do alcance
+      ctx.strokeStyle=`rgba(125,240,200,${.35*a})`;
+      for(let i=0;i<72;i++){const an=i/72*Math.PI*2, l=i%6?4:9;ctx.beginPath();ctx.moveTo(cx+Math.cos(an)*(r+6),cy+Math.sin(an)*(r+6));ctx.lineTo(cx+Math.cos(an)*(r+6+l),cy+Math.sin(an)*(r+6+l));ctx.stroke();}
+    }
+    const pulse=1+Math.sin(t*2.4)*.06;
+    const dr=lerp(base*.29,9,k)*pulse;
+    ctx.fillStyle='rgba(125,240,200,.18)';ctx.beginPath();ctx.arc(cx,cy,dr*2.1,0,7);ctx.fill();
+    ctx.fillStyle='#7DF0C8';ctx.shadowColor='#7DF0C8';ctx.shadowBlur=24;ctx.beginPath();ctx.arc(cx,cy,dr,0,7);ctx.fill();ctx.shadowBlur=0;
+
+    const ap=seg(p,.3,.5);
+    const cp=seg(p,.48,.93), ci=Math.min(N-1,Math.floor(cp*N)), cl=(cp*N)%1;
+    const fadeAll=1-seg(p,.94,1);
+    people.forEach((q,i)=>{
+      const vis=clamp(ap*people.length-i)*fadeAll; if(vis<=0){q.x=null;return;}
+      const x=cx+Math.cos(q.a+t*.03)*q.d*r, y=cy+Math.sin(q.a+t*.03)*q.d*r;
+      q.x=x;q.y=y;
+      const act=cp>0&&q.c===ci, col=COLORS[q.c];
+      ctx.globalAlpha=vis*(cp>0&&!act?.3:1);
+      ctx.fillStyle=col+'2a';ctx.beginPath();ctx.arc(x,y,act?13:9,0,7);ctx.fill();
+      ctx.fillStyle=col;ctx.beginPath();ctx.arc(x,y,act?4.2:3,0,7);ctx.fill();
+      ctx.globalAlpha=1;
+    });
+    if(cp>0&&fadeAll>0){
+      const grp=people.filter(q=>q.c===ci&&q.x!=null);
+      const g=ease(clamp(cl*2.2)), out=1-seg(cl,.88,1);
+      ctx.strokeStyle=COLORS[ci];ctx.lineWidth=1.3;ctx.shadowColor=COLORS[ci];ctx.shadowBlur=10;
+      grp.forEach(q=>{ctx.globalAlpha=out*fadeAll;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(lerp(cx,q.x,g),lerp(cy,q.y,g));ctx.stroke();
+        // pulso viajando pela linha
+        const s=(t*.8+q.a)%1;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(lerp(cx,q.x,s*g),lerp(cy,q.y,s*g),1.8,0,7);ctx.fill();});
+      ctx.shadowBlur=0;ctx.globalAlpha=1;
+    }
+
+    const v1=1-seg(p,.03,.12);
+    o1.style.opacity=v1;o1.style.transform=`translateY(${-30*(1-v1)}px)`;
+    hint.style.opacity=v1;
+    const v2=seg(p,.3,.36)*(1-seg(p,.44,.5));
+    o2.style.opacity=v2;o2.style.transform=`translateY(calc(-50% + ${(1-v2)*20}px))`;
+    o3.style.opacity=cp>0?fadeAll:0;
+    words.forEach((w,i)=>w.classList.toggle('on',cp>0&&i===ci));
+    caps.forEach((w,i)=>w.classList.toggle('on',cp>0&&i===ci));
+    cv.style.opacity=1-.6*v2;
+  }
+
+  /* ---------- Cena 2: o app ---------- */
+  const app=document.getElementById('app'), phone=document.getElementById('phone');
+  const sts=[...document.querySelectorAll('.st')], svs=[...document.querySelectorAll('.sv')], idx=[...document.querySelectorAll('#idx i')];
+  let cur=0;
+  function drawApp(){
+    const p=prog(app), r=app.getBoundingClientRect();
+    const enter=ease(clamp(1-r.top/innerHeight));
+    phone.style.setProperty('--rx',`${lerp(28,0,enter)}deg`);
+    phone.style.setProperty('--sc',lerp(.86,1,enter));
+    const i=Math.min(3,Math.floor(p*4));
+    if(i!==cur){cur=i;sts.forEach((s,j)=>s.classList.toggle('on',j===i));svs.forEach((s,j)=>s.classList.toggle('on',j===i));}
+    idx.forEach((el,j)=>el.style.setProperty('--p',clamp(p*4-j)));
+  }
+
+  /* ---------- Manifesto: as palavras acendem com a rolagem ---------- */
+  const mani=document.getElementById('mani'), parts=[];
+  mani.childNodes.forEach(n=>{
+    if(n.nodeType===3) n.textContent.split(/(\s+)/).forEach(w=>parts.push(w.trim()?`<span>${w}</span>`:w));
+    else parts.push(`<span class="m">${n.textContent}</span>`);
+  });
+  mani.innerHTML=parts.join('');
+  const mw=[...mani.querySelectorAll('span')];
+  function drawMani(){
+    const r=mani.getBoundingClientRect();
+    const n=Math.round(clamp((innerHeight*.85-r.top)/(innerHeight*.5+r.height*.6))*mw.length);
+    mw.forEach((s,i)=>s.classList.toggle('lit',i<n));
+  }
+
+  const end=document.getElementById('end');
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)end.classList.add('in');},{threshold:.35}).observe(end);
+
+  function tick(now){
+    nav.classList.toggle('solid',scrollY>innerHeight*.5);
+    const sr=scene.getBoundingClientRect();
+    if(sr.bottom>0&&sr.top<innerHeight) draw(now);
+    const ar=app.getBoundingClientRect();
+    if(ar.bottom>0&&ar.top<innerHeight*1.2) drawApp();
+    drawMani();
+    if(!reduce) requestAnimationFrame(tick);
+  }
+  size();
+  addEventListener('resize',()=>{size();if(reduce)tick(performance.now());});
+  if(reduce){addEventListener('scroll',()=>tick(performance.now()),{passive:true});tick(performance.now());}
+  else requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>
